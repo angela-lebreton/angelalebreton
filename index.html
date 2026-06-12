@@ -106,6 +106,21 @@
     border-bottom: 1px solid var(--border);
     background: var(--white);
   }
+  .hero-network-bg {
+    position: absolute;
+    top: 0; right: 0; bottom: 0;
+    width: 70%;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .hero-network-bg svg {
+    width: 100%;
+    height: 100%;
+    opacity: .055;
+  }
+  .node { fill: var(--accent); }
+  .edge { stroke: var(--accent); stroke-width: 1.2; fill: none; }
+  .hero-text { position: relative; z-index: 1; }
   .hero-tag {
     font-size: 11px;
     font-weight: 500;
@@ -426,12 +441,58 @@
 
 <section id="hero">
   <div class="container">
-    <span class="hero-tag">Consultante en affaires publiques · Paris</span>
-    <h1 class="hero-title">Animation réseau et coordination inter-acteurs pour les projets publics à impact.</h1>
-    <p class="hero-bio">Consultante spécialisée en déploiement de politiques publiques numériques, je mobilise acteurs institutionnels et opérationnels pour transformer des orientations stratégiques en services concrets. Formée à Sciences Po, j'interviens après plusieurs années au sein de l'administration centrale et de cabinets ministériels.</p>
-    <div class="hero-actions">
-      <a href="#contact" class="hero-cta">Me contacter</a>
-      <a href="#parcours" class="hero-cta-ghost">Voir le parcours</a>
+    <div class="hero-network-bg">
+      <svg viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <!-- Arêtes -->
+        <line class="edge" x1="400" y1="200" x2="180" y2="80"/>
+        <line class="edge" x1="400" y1="200" x2="580" y2="90"/>
+        <line class="edge" x1="400" y1="200" x2="680" y2="240"/>
+        <line class="edge" x1="400" y1="200" x2="600" y2="360"/>
+        <line class="edge" x1="400" y1="200" x2="250" y2="340"/>
+        <line class="edge" x1="400" y1="200" x2="120" y2="300"/>
+        <line class="edge" x1="400" y1="200" x2="460" y2="390"/>
+        <line class="edge" x1="180" y1="80"  x2="580" y2="90"  opacity=".35"/>
+        <line class="edge" x1="180" y1="80"  x2="120" y2="300" opacity=".3"/>
+        <line class="edge" x1="580" y1="90"  x2="680" y2="240" opacity=".35"/>
+        <line class="edge" x1="680" y1="240" x2="600" y2="360" opacity=".4"/>
+        <line class="edge" x1="600" y1="360" x2="460" y2="390" opacity=".4"/>
+        <line class="edge" x1="250" y1="340" x2="460" y2="390" opacity=".35"/>
+        <line class="edge" x1="120" y1="300" x2="250" y2="340" opacity=".35"/>
+        <line class="edge" x1="180" y1="80"  x2="60"  y2="40"  opacity=".2"/>
+        <line class="edge" x1="580" y1="90"  x2="740" y2="50"  opacity=".2"/>
+        <line class="edge" x1="680" y1="240" x2="790" y2="310" opacity=".2"/>
+        <line class="edge" x1="600" y1="360" x2="720" y2="460" opacity=".2"/>
+        <line class="edge" x1="250" y1="340" x2="150" y2="460" opacity=".2"/>
+        <line class="edge" x1="120" y1="300" x2="30"  y2="400" opacity=".2"/>
+        <!-- Nœuds périphériques distants -->
+        <circle class="node" cx="60"  cy="40"  r="4" opacity=".25"/>
+        <circle class="node" cx="740" cy="50"  r="4" opacity=".25"/>
+        <circle class="node" cx="790" cy="310" r="4" opacity=".25"/>
+        <circle class="node" cx="720" cy="460" r="4" opacity=".2"/>
+        <circle class="node" cx="150" cy="460" r="4" opacity=".2"/>
+        <circle class="node" cx="30"  cy="400" r="4" opacity=".2"/>
+        <!-- Nœuds secondaires -->
+        <circle class="node" cx="180" cy="80"  r="9"  opacity=".5"/>
+        <circle class="node" cx="580" cy="90"  r="8"  opacity=".5"/>
+        <circle class="node" cx="680" cy="240" r="10" opacity=".55"/>
+        <circle class="node" cx="600" cy="360" r="9"  opacity=".5"/>
+        <circle class="node" cx="250" cy="340" r="11" opacity=".6"/>
+        <circle class="node" cx="120" cy="300" r="8"  opacity=".5"/>
+        <circle class="node" cx="460" cy="390" r="7"  opacity=".45"/>
+        <!-- Nœud central -->
+        <circle class="node" cx="400" cy="200" r="18" opacity=".85"/>
+        <circle class="node" cx="400" cy="200" r="32" opacity=".08"/>
+        <circle class="node" cx="400" cy="200" r="50" opacity=".04"/>
+      </svg>
+    </div>
+    <div class="hero-text">
+      <span class="hero-tag">Consultante en affaires publiques · Paris</span>
+      <h1 class="hero-title">Animation réseau et coordination inter-acteurs pour les projets publics à impact.</h1>
+      <p class="hero-bio">Consultante spécialisée en déploiement de politiques publiques numériques, je mobilise acteurs institutionnels et opérationnels pour transformer des orientations stratégiques en services concrets. Formée à Sciences Po, j'interviens après plusieurs années au sein de l'administration centrale et de cabinets ministériels.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="hero-cta">Me contacter</a>
+        <a href="#parcours" class="hero-cta-ghost">Voir le parcours</a>
+      </div>
     </div>
   </div>
 </section>
