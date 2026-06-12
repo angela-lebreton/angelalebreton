@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Angela Lebreton — Consultante en affaires publiques</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #141420;
+    --white: #FFFFFF;
+    --gray: #565669;
+    --light: #F5F5F8;
+    --mid: #E8E8F0;
+    --accent: #2E3F7A;
+    --accent-light: #EAECF6;
+    --hero-bg: #DCE0F0;
+    --border: #DCDDE8;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'IBM Plex Sans', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--white);
+    color: var(--black);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Navigation ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.25rem 3rem;
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    z-index: 100;
+    transition: padding .3s, background .3s, border-color .3s;
+  }
+  nav.scrolled {
+    padding: 0.9rem 3rem;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-name {
+    font-family: var(--serif);
+    font-size: 17px;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    text-decoration: none;
+  }
+  .nav-cta {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--gray);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2px;
+    transition: color .2s, border-color .2s;
+  }
+  .nav-cta:hover { color: var(--black); border-color: var(--black); }
+
+  /* ── Layout ── */
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 3rem;
+  }
+
+  section { padding: 7rem 0; }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-label::after {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--accent);
+    opacity: .5;
+  }
+
+  /* ── Hero ── */
+  #hero {
+    padding-top: 10rem;
+    padding-bottom: 6rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--white);
+  }
+  .hero-tag {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.75rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(32px, 5vw, 54px);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    color: var(--black);
+    margin-bottom: 1.75rem;
+    max-width: 620px;
+  }
+  .hero-title em { font-style: italic; color: var(--accent); }
+  .hero-bio {
+    font-size: 16px;
+    color: var(--gray);
+    max-width: 500px;
+    line-height: 1.8;
+    margin-bottom: 2.75rem;
+    font-weight: 300;
+  }
+  .hero-actions { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--sans);
+    font-size: 12.5px;
+    font-weight: 500;
+    padding: 0.85rem 1.75rem;
+    border-radius: 2px;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: background .2s, transform .15s;
+  }
+  .hero-cta:hover { background: var(--accent); transform: translateY(-1px); }
+  .hero-cta-ghost {
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--gray);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2px;
+    transition: color .2s, border-color .2s;
+  }
+  .hero-cta-ghost:hover { color: var(--black); border-color: var(--black); }
+
+  /* ── Roles ── */
+  #roles {
+    border-bottom: 1px solid var(--border);
+  }
+  .roles-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .role-card {
+    background: var(--white);
+    padding: 2.25rem;
+    transition: background .25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .role-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 2.25rem;
+    width: 0; height: 2px;
+    background: var(--accent);
+    transition: width .3s ease;
+  }
+  .role-card:hover { background: var(--light); }
+  .role-card:hover::after { width: calc(100% - 4.5rem); }
+  .role-number {
+    font-family: var(--serif);
+    font-size: 11px;
+    color: var(--accent);
+    opacity: .6;
+    margin-bottom: 1.25rem;
+    letter-spacing: 0.04em;
+  }
+  .role-title {
+    font-family: var(--serif);
+    font-size: 18px;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.65rem;
+    line-height: 1.2;
+  }
+  .role-desc { font-size: 13px; color: var(--gray); line-height: 1.7; font-weight: 300; }
+
+  /* ── Parcours ── */
+  #parcours { border-bottom: 1px solid var(--border); }
+  .timeline { display: flex; flex-direction: column; }
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 2.5rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    transition: background .2s;
+  }
+  .timeline-item:last-child { border-bottom: none; }
+  .timeline-item:first-child {
+    padding-left: 1rem;
+    border-left: 2px solid var(--accent);
+    margin-left: -1rem;
+  }
+  .timeline-item:first-child .timeline-date { color: var(--accent); font-weight: 600; }
+  .timeline-item:first-child .timeline-date::before { background: var(--accent); }
+  .timeline-date {
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    padding-top: 4px;
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .timeline-date::before {
+    content: '';
+    display: inline-block;
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-top: 5px;
+    flex-shrink: 0;
+  }
+  .timeline-org {
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 5px;
+    opacity: .8;
+  }
+  .timeline-role {
+    font-family: var(--serif);
+    font-size: 17px;
+    letter-spacing: 0;
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  .timeline-desc { font-size: 13px; color: var(--gray); line-height: 1.7; font-weight: 300; }
+
+  /* ── Références ── */
+  #references {
+    border-bottom: 1px solid var(--border);
+    background: var(--light);
+    padding: 4.5rem 0;
+  }
+  #references .container { max-width: 1100px; }
+  .references-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gray);
+    text-align: center;
+    display: block;
+    margin-bottom: 3rem;
+    opacity: .6;
+  }
+  .references-grid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+  }
+  .ref-item {
+    flex: 1;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .ref-logo {
+    max-width: 140px;
+    height: 72px;
+    color: var(--accent);
+    opacity: 0.28;
+    transition: opacity .35s;
+  }
+  .ref-item:hover .ref-logo { opacity: 0.8; }
+
+  @media (max-width: 600px) {
+    .references-grid { flex-wrap: wrap; }
+    .ref-item { flex: 0 0 50%; }
+  }
+
+  /* ── Contact ── */
+  #contact {
+    text-align: center;
+    background: var(--accent);
+    margin-top: 0;
+  }
+  #contact .container { padding-top: 6rem; padding-bottom: 6rem; }
+  .contact-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 1.25rem;
+    display: block;
+  }
+  .contact-title {
+    font-family: var(--serif);
+    font-size: clamp(28px, 4vw, 44px);
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+    color: var(--white);
+  }
+  .contact-sub { font-size: 15px; color: rgba(255,255,255,0.65); margin-bottom: 2.75rem; font-weight: 300; }
+  .contact-links { display: inline-flex; }
+  .contact-link {
+    font-size: 12.5px; font-weight: 500; color: var(--accent);
+    text-decoration: none;
+    background: var(--white);
+    padding: 0.9rem 1.75rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border-right: 1px solid rgba(0,0,0,0.08);
+    transition: background .2s, color .2s;
+    white-space: nowrap;
+  }
+  .contact-link:last-child { border-right: none; }
+  .contact-link:hover { background: var(--black); color: var(--white); }
+
+  /* ── Footer ── */
+  footer {
+    background: var(--accent);
+    padding: 1.25rem 3rem;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .footer-dot {
+    width: 3px; height: 3px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+  }
+
+  /* ── Fade-in animation ── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .fade-in:nth-child(2) { transition-delay: .1s; }
+  .fade-in:nth-child(3) { transition-delay: .2s; }
+  .fade-in:nth-child(4) { transition-delay: .3s; }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    nav { padding: 1rem 1.5rem; }
+    nav.scrolled { padding: .8rem 1.5rem; }
+    .container { padding: 0 1.5rem; }
+    section { padding: 4.5rem 0; }
+    #hero { padding-top: 7rem; }
+    .roles-grid { grid-template-columns: 1fr; }
+    .timeline-item { grid-template-columns: 1fr; gap: 0.4rem; }
+    .timeline-date { padding-top: 0; }
+    .nav-links { display: none; }
+    footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+    .contact-links { flex-direction: column; }
+    .contact-link { border-right: none; border-bottom: 1px solid var(--border); }
+    .contact-link:last-child { border-bottom: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#hero" class="nav-name">Angela Lebreton</a>
+  <a href="#contact" class="nav-cta">Contact</a>
+</nav>
+
+<section id="hero">
+  <div class="container">
+    <span class="hero-tag">Consultante en affaires publiques · Paris</span>
+    <h1 class="hero-title">Animation réseau et coordination inter-acteurs pour les projets publics à impact.</h1>
+    <p class="hero-bio">Consultante spécialisée en déploiement de politiques publiques numériques, je mobilise acteurs institutionnels et opérationnels pour transformer des orientations stratégiques en services concrets. Formée à Sciences Po, j'interviens après plusieurs années au sein de l'administration centrale et de cabinets ministériels.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="hero-cta">Me contacter</a>
+      <a href="#parcours" class="hero-cta-ghost">Voir le parcours</a>
+    </div>
+  </div>
+</section>
+
+<section id="roles">
+  <div class="container">
+    <span class="section-label">Ce que je fais</span>
+    <div class="roles-grid">
+      <div class="role-card fade-in">
+        <div class="role-number">01</div>
+        <div class="role-title">Déploiement de politiques publiques</div>
+        <div class="role-desc">Pilotage opérationnel de l'adoption de services numériques d'État — conception de la stratégie de déploiement, mobilisation des parties prenantes et conduite du changement à l'échelle nationale.</div>
+      </div>
+      <div class="role-card fade-in">
+        <div class="role-number">02</div>
+        <div class="role-title">Coordination institutionnelle</div>
+        <div class="role-desc">Animation de coalitions d'acteurs publics sans lien hiérarchique : ministères, collectivités territoriales, opérateurs de l'État et associations. Gestion des jeux d'acteurs et arbitrages interministériels.</div>
+      </div>
+      <div class="role-card fade-in">
+        <div class="role-number">03</div>
+        <div class="role-title">Conseil en affaires publiques</div>
+        <div class="role-desc">Analyse des politiques publiques, production de notes stratégiques et aide à la décision pour décideurs publics et institutionnels. Diagnostic territorial et positionnement d'acteurs.</div>
+      </div>
+      <div class="role-card fade-in">
+        <div class="role-number">04</div>
+        <div class="role-title">Recherche & enseignement</div>
+        <div class="role-desc">Chargée d'enseignement à Sciences Po Paris. Cours sur la géopolitique de la Méditerranée, les dynamiques migratoires et les relations euro-méditerranéennes.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="parcours">
+  <div class="container">
+    <span class="section-label">Parcours</span>
+    <div class="timeline">
+      <div class="timeline-item fade-in">
+        <div class="timeline-date">2026 →</div>
+        <div class="timeline-content">
+          <div class="timeline-org">GIP Plateforme de l'Inclusion</div>
+          <div class="timeline-role">Chargée d'animation réseau et partenariat</div>
+          <div class="timeline-desc">Animation et développement du réseau de partenaires institutionnels pour le déploiement des services numériques PDI — collectivités, structures AHI, opérateurs de l'insertion et professionnels du travail social.</div>
+        </div>
+      </div>
+      <div class="timeline-item fade-in">
+        <div class="timeline-date">2025 – 2026</div>
+        <div class="timeline-content">
+          <div class="timeline-org">Service d'Information du Gouvernement</div>
+          <div class="timeline-role">Consultante en affaires publiques</div>
+          <div class="timeline-desc">Élaboration de la stratégie de déploiement et évaluation de l'impact des outils de communication institutionnelle de l'État.</div>
+        </div>
+      </div>
+      <div class="timeline-item fade-in">
+        <div class="timeline-date">2023 – 2025</div>
+        <div class="timeline-content">
+          <div class="timeline-org">Direction interministérielle du Numérique</div>
+          <div class="timeline-role">Consultante en affaires publiques</div>
+          <div class="timeline-desc">Pilotage du déploiement de plateformes numériques nationales. Coordination interministérielle entre ministères, collectivités, opérateurs et équipes produit.</div>
+        </div>
+      </div>
+      <div class="timeline-item fade-in">
+        <div class="timeline-date">2022</div>
+        <div class="timeline-content">
+          <div class="timeline-org">Cabinet du Ministre délégué — Transition numérique</div>
+          <div class="timeline-role">Chargée de mission — Relations institutionnelles</div>
+          <div class="timeline-desc">Rédaction de discours, éléments de langage et notes d'aide à la décision en appui aux conseillers Parlement et Presse du cabinet.</div>
+        </div>
+      </div>
+      <div class="timeline-item fade-in">
+        <div class="timeline-date">2021</div>
+        <div class="timeline-content">
+          <div class="timeline-org">Direction générale de la cohésion sociale</div>
+          <div class="timeline-role">Chargée de mission — Politiques sociales</div>
+          <div class="timeline-desc">Suivi et coordination du projet "1 000 premiers jours de l'enfant". Évaluation de l'appel à projets Plan de soutien aux associations.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="references">
+  <div class="container">
+    <span class="references-label">Ils m'ont confié leur impact</span>
+    <div class="references-grid">
+
+      <!-- Gouvernement / SIG -->
+      <div class="ref-item">
+        <svg viewBox="0 0 110 80" xmlns="http://www.w3.org/2000/svg" class="ref-logo">
+          <!-- Marianne gauche -->
+          <rect x="0" y="0" width="22" height="18" fill="currentColor"/>
+          <ellipse cx="14" cy="9" rx="6" ry="7" fill="currentColor" opacity=".15"/>
+          <path d="M8 2 C10 4 15 6 16 14 L22 14 L22 0 L8 0Z" fill="currentColor" opacity=".4"/>
+          <!-- Marianne droite -->
+          <rect x="24" y="0" width="22" height="18" fill="currentColor" opacity=".45"/>
+          <path d="M38 2 C36 4 31 6 30 14 L24 14 L24 0 L38 0Z" fill="currentColor" opacity=".7"/>
+          <!-- GOUVERNEMENT -->
+          <text x="0" y="44" font-family="IBM Plex Sans,sans-serif" font-size="11.5" font-weight="800" letter-spacing="0.04em" fill="currentColor">GOUVERNEMENT</text>
+          <!-- Liberté Égalité Fraternité -->
+          <text x="1" y="57" font-family="Georgia,serif" font-size="8" font-style="italic" fill="currentColor" opacity=".7">Liberté</text>
+          <text x="1" y="67" font-family="Georgia,serif" font-size="8" font-style="italic" fill="currentColor" opacity=".7">Égalité</text>
+          <text x="1" y="77" font-family="Georgia,serif" font-size="8" font-style="italic" fill="currentColor" opacity=".7">Fraternité</text>
+        </svg>
+      </div>
+
+      <!-- DINUM -->
+      <div class="ref-item">
+        <svg viewBox="0 0 90 80" xmlns="http://www.w3.org/2000/svg" class="ref-logo">
+          <!-- Marianne gauche -->
+          <rect x="0" y="0" width="18" height="15" fill="currentColor"/>
+          <path d="M6 1 C8 3 12 5 13 12 L18 12 L18 0 L6 0Z" fill="currentColor" opacity=".4"/>
+          <!-- Marianne droite -->
+          <rect x="20" y="0" width="18" height="15" fill="currentColor" opacity=".45"/>
+          <path d="M32 1 C30 3 26 5 25 12 L20 12 L20 0 L32 0Z" fill="currentColor" opacity=".7"/>
+          <!-- DIRECTION -->
+          <text x="0" y="34" font-family="IBM Plex Sans,sans-serif" font-size="10" font-weight="800" letter-spacing="0.05em" fill="currentColor">DIRECTION</text>
+          <text x="0" y="46" font-family="IBM Plex Sans,sans-serif" font-size="8.5" font-weight="700" letter-spacing="0.03em" fill="currentColor">INTERMINISTÉRIELLE</text>
+          <text x="0" y="57" font-family="IBM Plex Sans,sans-serif" font-size="8.5" font-weight="700" letter-spacing="0.03em" fill="currentColor">DU NUMÉRIQUE</text>
+          <text x="1" y="67" font-family="Georgia,serif" font-size="7" font-style="italic" fill="currentColor" opacity=".65">Liberté · Égalité · Fraternité</text>
+        </svg>
+      </div>
+
+      <!-- Plateforme de l'inclusion -->
+      <div class="ref-item">
+        <svg viewBox="0 0 72 80" xmlns="http://www.w3.org/2000/svg" class="ref-logo">
+          <!-- Bulles — fidèles au logo réel -->
+          <circle cx="44" cy="12" r="11" fill="currentColor" opacity=".25"/>
+          <circle cx="24" cy="18" r="8"  fill="currentColor" opacity=".5"/>
+          <circle cx="52" cy="32" r="7"  fill="currentColor" opacity=".4"/>
+          <circle cx="18" cy="34" r="13" fill="currentColor"/>
+          <circle cx="40" cy="44" r="5"  fill="currentColor" opacity=".3"/>
+          <!-- Texte -->
+          <text x="0" y="65" font-family="IBM Plex Sans,sans-serif" font-size="9.5" font-weight="500" fill="currentColor">Plateforme</text>
+          <text x="0" y="77" font-family="IBM Plex Sans,sans-serif" font-size="9.5" font-weight="500" fill="currentColor">de l'inclusion</text>
+        </svg>
+      </div>
+
+      <!-- JeVeuxAider -->
+      <div class="ref-item">
+        <svg viewBox="0 0 88 80" xmlns="http://www.w3.org/2000/svg" class="ref-logo">
+          <text x="0" y="32" font-family="IBM Plex Sans,sans-serif" font-size="28" font-weight="800" letter-spacing="-0.02em" fill="currentColor">JeVeux</text>
+          <text x="0" y="62" font-family="IBM Plex Sans,sans-serif" font-size="28" font-weight="800" letter-spacing="-0.02em" fill="currentColor">Aider</text>
+          <text x="1" y="76" font-family="IBM Plex Sans,sans-serif" font-size="7.5" letter-spacing="0.08em" fill="currentColor" opacity=".55">PAR LA RÉSERVE CIVIQUE</text>
+        </svg>
+      </div>
+
+      <!-- Mon Espace Collectivité -->
+      <div class="ref-item">
+        <svg viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg" class="ref-logo">
+          <!-- Hexagone (vertex en haut) -->
+          <polygon points="28,2 50,14 50,40 28,52 6,40 6,14" fill="none" stroke="currentColor" stroke-width="3.5"/>
+          <!-- Feuille -->
+          <path d="M28 42 C28 42 14 28 22 18 C30 8 42 18 28 42Z" fill="currentColor" opacity=".2"/>
+          <path d="M28 42 C28 42 14 28 22 18 C30 8 42 18 28 42Z" fill="none" stroke="currentColor" stroke-width="2"/>
+          <!-- Tige -->
+          <path d="M28 42 C27 48 26 52 28 56" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <!-- Texte -->
+          <text x="58" y="20" font-family="IBM Plex Sans,sans-serif" font-size="10" font-weight="800" fill="currentColor">Mon</text>
+          <text x="58" y="34" font-family="IBM Plex Sans,sans-serif" font-size="10" font-weight="800" fill="currentColor">Espace</text>
+          <text x="58" y="48" font-family="IBM Plex Sans,sans-serif" font-size="10" font-weight="800" fill="currentColor">Collectivité</text>
+        </svg>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <span class="contact-eyebrow">Contact</span>
+    <h2 class="contact-title">Vous avez un projet&nbsp;?</h2>
+    <p class="contact-sub">Vous avez un besoin de coordination de projet ?</p>
+    <div class="contact-links">
+      <a href="mailto:angelalebreton@outlook.com" class="contact-link">Email</a>
+      <a href="https://www.linkedin.com/in/angela-lebreton/" class="contact-link" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>Angela Lebreton · Paris</span>
+  <div class="footer-dot"></div>
+  <span>2026</span>
+</footer>
+
+<script>
+  // Nav shrink on scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  // Fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
