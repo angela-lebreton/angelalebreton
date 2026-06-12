@@ -291,32 +291,39 @@
     margin-bottom: 3rem;
     opacity: .6;
   }
+  .references-track-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    cursor: grab;
+  }
+  .references-track-wrapper::-webkit-scrollbar { display: none; }
+  .references-track-wrapper.dragging { cursor: grabbing; }
   .references-grid {
     display: flex;
     align-items: center;
-    justify-content: center;
+    width: max-content;
+    min-width: 100%;
     gap: 0;
   }
   .ref-item {
-    flex: 1;
+    flex-shrink: 0;
+    width: 200px;
     padding: 1.5rem 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-right: 1px solid var(--border);
   }
+  .ref-item:last-child { border-right: none; }
   .ref-logo {
-    max-width: 140px;
-    height: 72px;
+    max-width: 150px;
+    height: 76px;
     color: var(--accent);
     opacity: 0.28;
     transition: opacity .35s;
   }
   .ref-item:hover .ref-logo { opacity: 0.8; }
-
-  @media (max-width: 600px) {
-    .references-grid { flex-wrap: wrap; }
-    .ref-item { flex: 0 0 50%; }
-  }
 
   /* ── Contact ── */
   #contact {
@@ -435,18 +442,18 @@
     <div class="roles-grid">
       <div class="role-card fade-in">
         <div class="role-number">01</div>
-        <div class="role-title">Déploiement de politiques publiques</div>
-        <div class="role-desc">Pilotage opérationnel de l'adoption de services numériques d'État — conception de la stratégie de déploiement, mobilisation des parties prenantes et conduite du changement à l'échelle nationale.</div>
+        <div class="role-title">Déploiement de projets à impact</div>
+        <div class="role-desc">Pilotage opérationnel de services et dispositifs à grande échelle — conception de la stratégie de déploiement, mobilisation des parties prenantes et conduite du changement, pour des structures publiques comme associatives.</div>
       </div>
       <div class="role-card fade-in">
         <div class="role-number">02</div>
-        <div class="role-title">Coordination institutionnelle</div>
-        <div class="role-desc">Animation de coalitions d'acteurs publics sans lien hiérarchique : ministères, collectivités territoriales, opérateurs de l'État et associations. Gestion des jeux d'acteurs et arbitrages interministériels.</div>
+        <div class="role-title">Animation réseau & coordination</div>
+        <div class="role-desc">Animation de coalitions d'acteurs hétérogènes : institutions publiques, collectivités, associations, fondations et think tanks. Gestion des jeux d'acteurs et facilitation des coopérations inter-organisations.</div>
       </div>
       <div class="role-card fade-in">
         <div class="role-number">03</div>
-        <div class="role-title">Conseil en affaires publiques</div>
-        <div class="role-desc">Analyse des politiques publiques, production de notes stratégiques et aide à la décision pour décideurs publics et institutionnels. Diagnostic territorial et positionnement d'acteurs.</div>
+        <div class="role-title">Conseil stratégique & affaires publiques</div>
+        <div class="role-desc">Analyse des politiques publiques, production de notes stratégiques et aide à la décision. Accompagnement d'organisations publiques, associatives ou de recherche dans leur positionnement et leurs relations institutionnelles.</div>
       </div>
       <div class="role-card fade-in">
         <div class="role-number">04</div>
@@ -508,11 +515,12 @@
 <section id="references">
   <div class="container">
     <span class="references-label">Ils m'ont confié leur impact</span>
+    <div class="references-track-wrapper" id="refTrack">
     <div class="references-grid">
 
       <!-- Gouvernement / SIG -->
       <div class="ref-item">
-        <svg viewBox="0 0 110 80" xmlns="http://www.w3.org/2000/svg" class="ref-logo">
+        <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg" class="ref-logo">
           <!-- Marianne gauche -->
           <rect x="0" y="0" width="22" height="18" fill="currentColor"/>
           <ellipse cx="14" cy="9" rx="6" ry="7" fill="currentColor" opacity=".15"/>
@@ -531,7 +539,7 @@
 
       <!-- DINUM -->
       <div class="ref-item">
-        <svg viewBox="0 0 90 80" xmlns="http://www.w3.org/2000/svg" class="ref-logo">
+        <svg viewBox="0 0 115 80" xmlns="http://www.w3.org/2000/svg" class="ref-logo">
           <!-- Marianne gauche -->
           <rect x="0" y="0" width="18" height="15" fill="currentColor"/>
           <path d="M6 1 C8 3 12 5 13 12 L18 12 L18 0 L6 0Z" fill="currentColor" opacity=".4"/>
@@ -548,13 +556,13 @@
 
       <!-- Plateforme de l'inclusion -->
       <div class="ref-item">
-        <svg viewBox="0 0 72 80" xmlns="http://www.w3.org/2000/svg" class="ref-logo">
+        <svg viewBox="0 0 90 80" xmlns="http://www.w3.org/2000/svg" class="ref-logo">
           <!-- Bulles — fidèles au logo réel -->
-          <circle cx="44" cy="12" r="11" fill="currentColor" opacity=".25"/>
-          <circle cx="24" cy="18" r="8"  fill="currentColor" opacity=".5"/>
-          <circle cx="52" cy="32" r="7"  fill="currentColor" opacity=".4"/>
-          <circle cx="18" cy="34" r="13" fill="currentColor"/>
-          <circle cx="40" cy="44" r="5"  fill="currentColor" opacity=".3"/>
+          <circle cx="56" cy="12" r="11" fill="currentColor" opacity=".25"/>
+          <circle cx="34" cy="18" r="8"  fill="currentColor" opacity=".5"/>
+          <circle cx="66" cy="32" r="7"  fill="currentColor" opacity=".4"/>
+          <circle cx="22" cy="34" r="13" fill="currentColor"/>
+          <circle cx="50" cy="44" r="5"  fill="currentColor" opacity=".3"/>
           <!-- Texte -->
           <text x="0" y="65" font-family="IBM Plex Sans,sans-serif" font-size="9.5" font-weight="500" fill="currentColor">Plateforme</text>
           <text x="0" y="77" font-family="IBM Plex Sans,sans-serif" font-size="9.5" font-weight="500" fill="currentColor">de l'inclusion</text>
@@ -563,7 +571,7 @@
 
       <!-- JeVeuxAider -->
       <div class="ref-item">
-        <svg viewBox="0 0 88 80" xmlns="http://www.w3.org/2000/svg" class="ref-logo">
+        <svg viewBox="0 0 140 80" xmlns="http://www.w3.org/2000/svg" class="ref-logo">
           <text x="0" y="32" font-family="IBM Plex Sans,sans-serif" font-size="28" font-weight="800" letter-spacing="-0.02em" fill="currentColor">JeVeux</text>
           <text x="0" y="62" font-family="IBM Plex Sans,sans-serif" font-size="28" font-weight="800" letter-spacing="-0.02em" fill="currentColor">Aider</text>
           <text x="1" y="76" font-family="IBM Plex Sans,sans-serif" font-size="7.5" letter-spacing="0.08em" fill="currentColor" opacity=".55">PAR LA RÉSERVE CIVIQUE</text>
@@ -572,7 +580,7 @@
 
       <!-- Mon Espace Collectivité -->
       <div class="ref-item">
-        <svg viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg" class="ref-logo">
+        <svg viewBox="0 0 148 80" xmlns="http://www.w3.org/2000/svg" class="ref-logo">
           <!-- Hexagone (vertex en haut) -->
           <polygon points="28,2 50,14 50,40 28,52 6,40 6,14" fill="none" stroke="currentColor" stroke-width="3.5"/>
           <!-- Feuille -->
@@ -581,12 +589,13 @@
           <!-- Tige -->
           <path d="M28 42 C27 48 26 52 28 56" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
           <!-- Texte -->
-          <text x="58" y="20" font-family="IBM Plex Sans,sans-serif" font-size="10" font-weight="800" fill="currentColor">Mon</text>
-          <text x="58" y="34" font-family="IBM Plex Sans,sans-serif" font-size="10" font-weight="800" fill="currentColor">Espace</text>
-          <text x="58" y="48" font-family="IBM Plex Sans,sans-serif" font-size="10" font-weight="800" fill="currentColor">Collectivité</text>
+          <text x="60" y="22" font-family="IBM Plex Sans,sans-serif" font-size="11" font-weight="800" fill="currentColor">Mon</text>
+          <text x="60" y="37" font-family="IBM Plex Sans,sans-serif" font-size="11" font-weight="800" fill="currentColor">Espace</text>
+          <text x="60" y="52" font-family="IBM Plex Sans,sans-serif" font-size="11" font-weight="800" fill="currentColor">Collectivité</text>
         </svg>
       </div>
 
+    </div>
     </div>
   </div>
 </section>
@@ -597,7 +606,7 @@
     <h2 class="contact-title">Vous avez un projet&nbsp;?</h2>
     <p class="contact-sub">Vous avez un besoin de coordination de projet ?</p>
     <div class="contact-links">
-      <a href="mailto:angelalebreton@outlook.com" class="contact-link">Email</a>
+      <a href="mailto:angela.lebreton@sciencespo.fr" class="contact-link">Email</a>
       <a href="https://www.linkedin.com/in/angela-lebreton/" class="contact-link" target="_blank" rel="noopener">LinkedIn</a>
     </div>
   </div>
@@ -615,6 +624,14 @@
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 60);
   }, { passive: true });
+
+  // Drag-to-scroll logos
+  const track = document.getElementById('refTrack');
+  let isDown = false, startX, scrollLeft;
+  track.addEventListener('mousedown', e => { isDown = true; track.classList.add('dragging'); startX = e.pageX - track.offsetLeft; scrollLeft = track.scrollLeft; });
+  track.addEventListener('mouseleave', () => { isDown = false; track.classList.remove('dragging'); });
+  track.addEventListener('mouseup', () => { isDown = false; track.classList.remove('dragging'); });
+  track.addEventListener('mousemove', e => { if (!isDown) return; e.preventDefault(); track.scrollLeft = scrollLeft - (e.pageX - track.offsetLeft - startX); });
 
   // Fade-in on scroll
   const observer = new IntersectionObserver((entries) => {
